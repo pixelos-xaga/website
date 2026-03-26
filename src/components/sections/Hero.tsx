@@ -1,5 +1,7 @@
-import { useRef, useState } from 'react';
-import type { TouchEvent } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type { KeyboardEvent } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 import { motion } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon } from '../ui/Icons';
 import { getSectionPath, scrollToSection } from '../../utils/sectionNavigation';
@@ -11,49 +13,91 @@ const screenshots = Array.from({ length: 13 }, (_, index) => ({
 }));
 
 export const Hero = () => {
+  const wheelGestures = useRef(
+    WheelGesturesPlugin({
+      forceWheelAxis: 'x',
+      wheelDraggingClass: styles.isWheelDragging,
+    }),
+  ).current;
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      align: 'start',
+      containScroll: 'trimSnaps',
+      loop: false,
+      skipSnaps: false,
+    },
+    [wheelGestures],
+  );
   const [activeScreenshot, setActiveScreenshot] = useState(0);
-  const touchStartX = useRef<number | null>(null);
-  const touchStartY = useRef<number | null>(null);
-  const isFirstScreenshot = activeScreenshot === 0;
-  const isLastScreenshot = activeScreenshot === screenshots.length - 1;
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(screenshots.length > 1);
+  const [isDragging, setIsDragging] = useState(false);
 
   const moveToPrevious = () => {
-    setActiveScreenshot((current) => Math.max(0, current - 1));
+    emblaApi?.scrollPrev();
   };
 
   const moveToNext = () => {
-    setActiveScreenshot((current) => Math.min(screenshots.length - 1, current + 1));
+    emblaApi?.scrollNext();
   };
 
-  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
-    const touch = event.changedTouches[0];
-    touchStartX.current = touch.clientX;
-    touchStartY.current = touch.clientY;
-  };
-
-  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
-    if (touchStartX.current === null || touchStartY.current === null) {
+  useEffect(() => {
+    if (!emblaApi) {
       return;
     }
 
-    const touch = event.changedTouches[0];
-    const deltaX = touch.clientX - touchStartX.current;
-    const deltaY = touch.clientY - touchStartY.current;
-    const isHorizontalSwipe = Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2;
+    const syncScreenshotState = () => {
+      setActiveScreenshot(emblaApi.selectedScrollSnap());
+      setCanScrollPrev(emblaApi.canScrollPrev());
+      setCanScrollNext(emblaApi.canScrollNext());
+    };
+    const handlePointerDown = () => {
+      setIsDragging(true);
+    };
+    const handlePointerRelease = () => {
+      setIsDragging(false);
+    };
 
-    touchStartX.current = null;
-    touchStartY.current = null;
+    syncScreenshotState();
 
-    if (!isHorizontalSwipe) {
-      return;
-    }
+    emblaApi.on('select', syncScreenshotState);
+    emblaApi.on('reInit', syncScreenshotState);
+    emblaApi.on('pointerDown', handlePointerDown);
+    emblaApi.on('pointerUp', handlePointerRelease);
+    emblaApi.on('settle', handlePointerRelease);
 
-    if (deltaX > 0) {
+    return () => {
+      emblaApi.off('select', syncScreenshotState);
+      emblaApi.off('reInit', syncScreenshotState);
+      emblaApi.off('pointerDown', handlePointerDown);
+      emblaApi.off('pointerUp', handlePointerRelease);
+      emblaApi.off('settle', handlePointerRelease);
+    };
+  }, [emblaApi]);
+
+  const handleCarouselKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
       moveToPrevious();
       return;
     }
 
-    moveToNext();
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      moveToNext();
+      return;
+    }
+
+    if (event.key === 'Home') {
+      event.preventDefault();
+      emblaApi?.scrollTo(0);
+      return;
+    }
+
+    if (event.key === 'End') {
+      event.preventDefault();
+      emblaApi?.scrollTo(screenshots.length - 1);
+    }
   };
 
   return (
@@ -98,40 +142,77 @@ export const Hero = () => {
             <div className={styles.viewerFrame}>
               <button
                 type="button"
-                className={`${styles.navButton} ${isFirstScreenshot ? styles.navButtonDisabled : ''}`}
+                className={`${styles.navButton} ${!canScrollPrev ? styles.navButtonDisabled : ''}`}
                 onClick={moveToPrevious}
-              disabled={isFirstScreenshot}
-              aria-label="Previous screenshot"
-            >
-              <ChevronLeftIcon size={20} />
-            </button>
+                disabled={!canScrollPrev}
+                aria-label="Previous screenshot"
+              >
+                <ChevronLeftIcon size={20} />
+              </button>
 
               <div
-                className={styles.phoneMockup}
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
+                className={`${styles.phoneMockup} ${isDragging ? styles.isDragging : ''}`}
               >
-                <img
-                  src={screenshots[activeScreenshot].src}
-                  alt={screenshots[activeScreenshot].alt}
-                  className={styles.screenImage}
-                />
+                <div
+                  ref={emblaRef}
+                  className={styles.viewport}
+                  onKeyDown={handleCarouselKeyDown}
+                  tabIndex={0}
+                  aria-label="PixelOS screenshots"
+                  aria-roledescription="carousel"
+                >
+                  <div className={styles.carouselContainer}>
+                    {screenshots.map((screenshot, index) => {
+                      const isActive = index === activeScreenshot;
+
+                      return (
+                        <div
+                          key={screenshot.src}
+                          className={styles.slide}
+                          aria-hidden={!isActive}
+                        >
+                          <div
+                            className={`${styles.slideInner} ${isActive ? styles.slideInnerActive : ''}`}
+                          >
+                            <img
+                              src={screenshot.src}
+                              alt={screenshot.alt}
+                              className={styles.screenImage}
+                              loading={index === 0 ? 'eager' : 'lazy'}
+                              decoding="async"
+                              draggable="false"
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
 
               <button
                 type="button"
-                className={`${styles.navButton} ${isLastScreenshot ? styles.navButtonDisabled : ''}`}
+                className={`${styles.navButton} ${!canScrollNext ? styles.navButtonDisabled : ''}`}
                 onClick={moveToNext}
-              disabled={isLastScreenshot}
-              aria-label="Next screenshot"
-            >
-              <ChevronRightIcon size={20} />
-            </button>
+                disabled={!canScrollNext}
+                aria-label="Next screenshot"
+              >
+                <ChevronRightIcon size={20} />
+              </button>
             </div>
+          </div>
+          <div className={styles.viewerMeta}>
+            <span aria-live="polite">
+              Screenshot {activeScreenshot + 1} / {screenshots.length}
+            </span>
           </div>
           <div
             className={styles.progressTrack}
-            aria-label={`Screenshot ${activeScreenshot + 1} of ${screenshots.length}`}
+            role="progressbar"
+            aria-label="Screenshot progress"
+            aria-valuemin={1}
+            aria-valuemax={screenshots.length}
+            aria-valuenow={activeScreenshot + 1}
           >
             <div
               className={styles.progressFill}
