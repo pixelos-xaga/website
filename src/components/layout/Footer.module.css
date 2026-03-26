@@ -127,32 +127,8 @@
   padding-top: var(--spacing-2xl);
   border-top: 1px solid var(--color-border);
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
   align-items: center;
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  .bottom {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-  }
-}
-
-.copyright {
-  font-size: 0.875rem;
-  color: var(--color-text-dim);
-}
-
-.copyrightLink {
-  color: var(--color-text-bright);
-  transition: var(--transition-fast);
-}
-
-.copyrightLink:hover {
-  color: var(--color-primary);
+  justify-content: center;
 }
 
 .madeWith {

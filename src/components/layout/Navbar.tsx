@@ -73,10 +73,10 @@ export const Navbar = () => {
   return (
     <nav className={clsx(styles.navbar, isScrolled && styles.scrolled)}>
       <div className={styles.container}>
-        <div className={styles.logo}>
+        <a href="/" className={styles.logo} aria-label="Go to homepage">
           <img src="/favicon.svg" alt="" className={styles.logoIcon} aria-hidden="true" />
           <span>PixelOS <span className={styles.device}>xaga</span></span>
-        </div>
+        </a>
 
         {/* Desktop Links */}
         <div className={styles.desktopLinks}>

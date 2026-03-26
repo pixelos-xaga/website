@@ -47,27 +47,6 @@ export const Footer = () => {
         </div>
 
         <div className={styles.bottom}>
-          <p className={styles.copyright}>
-            &copy; {new Date().getFullYear()}{' '}
-            <a
-              href="https://pixelos.net/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.copyrightLink}
-            >
-              PixelOS
-            </a>
-            . This project is not affiliated with upstream{' '}
-            <a
-              href="https://pixelos.net/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.copyrightLink}
-            >
-              PixelOS
-            </a>
-            .
-          </p>
           <p className={styles.madeWith}>
             Made with <HeartIcon size={14} className={styles.heartIcon} /> for Xaga
           </p>

@@ -36,6 +36,11 @@
   font-size: 1.25rem;
   letter-spacing: -0.02em;
   color: var(--color-text-bright);
+  transition: var(--transition-fast);
+}
+
+.logo:hover {
+  opacity: 0.9;
 }
 
 .logoIcon {
