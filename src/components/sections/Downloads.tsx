@@ -1,7 +1,14 @@
-import { Download, Wrench, ExternalLink, Copy, Check, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 import { Card } from '../ui/Card';
 import { CodeBlock } from '../ui/CodeBlock';
+import {
+  CheckIcon,
+  ChevronRightIcon,
+  CopyIcon,
+  DownloadIcon,
+  ExternalLinkIcon,
+  WrenchIcon,
+} from '../ui/Icons';
 import { DOWNLOADS } from '../../data/downloads';
 import styles from './Downloads.module.css';
 
@@ -25,7 +32,7 @@ export const Downloads = () => {
       <div className={styles.imageHeader}>
         <span className={styles.imageName}>{img.name}</span>
         <a href={img.link} className={styles.miniDownload} title={`Download ${img.name}`}>
-          <Download size={16} />
+          <DownloadIcon size={16} />
         </a>
       </div>
       <div className={styles.imageHash}>
@@ -35,7 +42,7 @@ export const Downloads = () => {
           className={styles.imageCopyButton}
           title={`Copy ${img.name} SHA256`}
         >
-          {copiedHash === img.sha256 ? <Check size={12} /> : <Copy size={12} />}
+          {copiedHash === img.sha256 ? <CheckIcon size={12} /> : <CopyIcon size={12} />}
         </button>
       </div>
     </div>
@@ -54,7 +61,7 @@ export const Downloads = () => {
           <Card variant="primary" className={styles.romCard}>
             <div className={styles.cardHeader}>
               <div className={styles.iconWrapper}>
-                <Download size={24} />
+                <DownloadIcon size={24} />
               </div>
               <div className={styles.cardInfo}>
                 <h3 className={styles.cardTitle}>{DOWNLOADS.rom.name}</h3>
@@ -81,7 +88,7 @@ export const Downloads = () => {
                     className={styles.copyButton}
                     title="Copy hash"
                   >
-                    {copiedHash === DOWNLOADS.rom.sha256 ? <Check size={16} /> : <Copy size={16} />}
+                    {copiedHash === DOWNLOADS.rom.sha256 ? <CheckIcon size={16} /> : <CopyIcon size={16} />}
                   </button>
                 </div>
               </div>
@@ -96,7 +103,7 @@ export const Downloads = () => {
 
             <div className={styles.cardActions}>
               <a href={DOWNLOADS.rom.link} className={styles.downloadButton}>
-                <Download size={18} />
+                <DownloadIcon size={18} />
                 Download ZIP
               </a>
             </div>
@@ -122,7 +129,7 @@ export const Downloads = () => {
               className={styles.archiveButton}
             >
               Open Archive
-              <ExternalLink size={16} />
+              <ExternalLinkIcon size={16} />
             </a>
           </Card>
 
@@ -133,13 +140,13 @@ export const Downloads = () => {
               {DOWNLOADS.essential.map((tool) => (
                 <div key={tool.name} className={styles.toolItem}>
                    <div className={styles.toolHeader}>
-                    <Wrench size={20} className={styles.toolIcon} />
+                    <WrenchIcon size={20} className={styles.toolIcon} />
                     <span className={styles.toolName}>{tool.name}</span>
                   </div>
                   <p className={styles.toolDesc}>{tool.description}</p>
                   <a href={tool.link} className={styles.toolLink}>
                     Download
-                    <ChevronRight size={14} />
+                    <ChevronRightIcon size={14} />
                   </a>
                 </div>
               ))}
@@ -158,7 +165,7 @@ export const Downloads = () => {
               className={styles.externalLink}
             >
               Download Platform Tools
-              <ExternalLink size={14} />
+              <ExternalLinkIcon size={14} />
             </a>
 
             <div className={styles.orDivider}>

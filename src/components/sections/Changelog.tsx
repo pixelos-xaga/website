@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { CalendarDays } from 'lucide-react';
 import { Card } from '../ui/Card';
+import { CalendarDaysIcon } from '../ui/Icons';
 import { CHANGELOG } from '../../data/changelog';
 import styles from './Changelog.module.css';
 
@@ -61,7 +61,7 @@ export const Changelog = () => {
 
             <label className={styles.selectWrap}>
               <span className={styles.selectLabel}>
-                <CalendarDays size={16} />
+                <CalendarDaysIcon size={16} />
                 Date
               </span>
               <select

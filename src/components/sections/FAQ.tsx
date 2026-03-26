@@ -1,7 +1,13 @@
-import { MessageCircle, Bug, Terminal, ShieldCheck, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import { Card } from '../ui/Card';
 import { CodeBlock } from '../ui/CodeBlock';
+import {
+  BugIcon,
+  ExternalLinkIcon,
+  MessageCircleIcon,
+  ShieldCheckIcon,
+  TerminalIcon,
+} from '../ui/Icons';
 import { DOWNLOADS } from '../../data/downloads';
 import styles from './FAQ.module.css';
 
@@ -21,21 +27,21 @@ export const FAQ = () => {
             className={activeTab === 'safetynet' ? styles.activeTab : ''} 
             onClick={() => setActiveTab('safetynet')}
           >
-            <ShieldCheck size={20} />
+            <ShieldCheckIcon size={20} />
             Integrity
           </button>
           <button 
             className={activeTab === 'bugs' ? styles.activeTab : ''} 
             onClick={() => setActiveTab('bugs')}
           >
-            <Bug size={20} />
+            <BugIcon size={20} />
             Report Bugs
           </button>
           <button 
             className={activeTab === 'logcat' ? styles.activeTab : ''} 
             onClick={() => setActiveTab('logcat')}
           >
-            <Terminal size={20} />
+            <TerminalIcon size={20} />
             Logcat
           </button>
         </div>
@@ -57,14 +63,14 @@ export const FAQ = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <code>pif.json</code>
-                    <ExternalLink size={12} className={styles.linkIcon} />
+                    <code>Pif.json</code>
+                    <ExternalLinkIcon size={12} className={styles.linkIcon} />
                   </a>{' '}
                   in Developer Options.
                 </li>
               </ul>
               <div className={styles.infoBox}>
-                <MessageCircle size={18} />
+                <MessageCircleIcon size={18} />
                 <span>Ask in the Telegram group for more info on sourcing keyboxes or PIF files.</span>
               </div>
             </Card>

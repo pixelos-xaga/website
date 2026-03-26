@@ -1,7 +1,7 @@
 import type { MouseEvent } from 'react';
-import { AlertTriangle, Info } from 'lucide-react';
 import { CodeBlock } from '../ui/CodeBlock';
 import { Card } from '../ui/Card';
+import { AlertTriangleIcon, InfoIcon } from '../ui/Icons';
 import { DOWNLOADS } from '../../data/downloads';
 import { getSectionPath, scrollToSection } from '../../utils/sectionNavigation';
 import styles from './FlashGuide.module.css';
@@ -41,7 +41,7 @@ export const FlashGuide = () => {
       content: (
         <>
           <div className={styles.warning}>
-            <AlertTriangle size={20} />
+            <AlertTriangleIcon size={20} />
             <span>Xaga is easy to brick. You <strong>MUST</strong> flash the engineering preloader first.</span>
           </div>
           <p className={styles.preloaderHelp}>
@@ -69,7 +69,7 @@ export const FlashGuide = () => {
         <>
           <p>With the device powered off, hold <strong>Volume Up + Power</strong>. Keep holding both buttons until the MI logo appears, then release the power button.</p>
           <div className={styles.info}>
-            <Info size={18} />
+            <InfoIcon size={18} />
             <span>You should now be in PixelOS Recovery.</span>
           </div>
         </>
@@ -121,7 +121,7 @@ export const FlashGuide = () => {
 
         <Card variant="glass" className={styles.disclaimerCard}>
           <div className={styles.disclaimerHeader}>
-            <AlertTriangle size={24} className={styles.disclaimerIcon} />
+            <AlertTriangleIcon size={24} className={styles.disclaimerIcon} />
             <h3>Disclaimer</h3>
           </div>
           <p>

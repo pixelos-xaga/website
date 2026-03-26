@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Copy, Check } from 'lucide-react';
+import { CheckIcon, CopyIcon } from './Icons';
 import styles from './CodeBlock.module.css';
 
 interface CodeBlockProps {
@@ -22,7 +22,7 @@ export const CodeBlock = ({ code, language = 'bash', className }: CodeBlockProps
       <div className={styles.header}>
         <span className={styles.lang}>{language}</span>
         <button onClick={copy} className={styles.copyBtn}>
-          {copied ? <Check size={14} /> : <Copy size={14} />}
+          {copied ? <CheckIcon size={14} /> : <CopyIcon size={14} />}
           {copied ? 'Copied' : 'Copy'}
         </button>
       </div>

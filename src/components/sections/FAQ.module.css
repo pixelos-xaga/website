@@ -101,8 +101,10 @@
 
 .contentCard a code {
   color: #8ab4ff;
-  border-color: rgba(66, 133, 244, 0.35);
-  background: rgba(66, 133, 244, 0.12);
+  border: none;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
 }
 
 .inlineCodeLink {
@@ -119,8 +121,6 @@
 
 .contentCard a:hover code {
   color: #b8d3ff;
-  border-color: rgba(66, 133, 244, 0.55);
-  background: rgba(66, 133, 244, 0.18);
 }
 
 .contentCard a:hover .linkIcon {

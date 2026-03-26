@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import type { TouchEvent } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeftIcon, ChevronRightIcon } from '../ui/Icons';
 import { getSectionPath, scrollToSection } from '../../utils/sectionNavigation';
 import styles from './Hero.module.css';
 
@@ -100,11 +100,11 @@ export const Hero = () => {
                 type="button"
                 className={`${styles.navButton} ${isFirstScreenshot ? styles.navButtonDisabled : ''}`}
                 onClick={moveToPrevious}
-                disabled={isFirstScreenshot}
-                aria-label="Previous screenshot"
-              >
-                <ChevronLeft size={20} />
-              </button>
+              disabled={isFirstScreenshot}
+              aria-label="Previous screenshot"
+            >
+              <ChevronLeftIcon size={20} />
+            </button>
 
               <div
                 className={styles.phoneMockup}
@@ -122,11 +122,11 @@ export const Hero = () => {
                 type="button"
                 className={`${styles.navButton} ${isLastScreenshot ? styles.navButtonDisabled : ''}`}
                 onClick={moveToNext}
-                disabled={isLastScreenshot}
-                aria-label="Next screenshot"
-              >
-                <ChevronRight size={20} />
-              </button>
+              disabled={isLastScreenshot}
+              aria-label="Next screenshot"
+            >
+              <ChevronRightIcon size={20} />
+            </button>
             </div>
           </div>
           <div

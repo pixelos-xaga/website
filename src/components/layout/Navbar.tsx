@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { MouseEvent } from 'react';
-import { Menu, X } from 'lucide-react';
 import { clsx } from 'clsx';
+import { MenuIcon, XIcon } from '../ui/Icons';
 import { getSectionPath, scrollToSection } from '../../utils/sectionNavigation';
 import styles from './Navbar.module.css';
 
@@ -120,7 +120,7 @@ export const Navbar = () => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? <XIcon size={24} /> : <MenuIcon size={24} />}
         </button>
       </div>
 

@@ -1,5 +1,5 @@
-import { Heart } from 'lucide-react';
 import { DOWNLOADS } from '../../data/downloads';
+import { HeartIcon } from '../ui/Icons';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
@@ -69,7 +69,7 @@ export const Footer = () => {
             .
           </p>
           <p className={styles.madeWith}>
-            Made with <Heart size={14} className={styles.heartIcon} /> for Xaga
+            Made with <HeartIcon size={14} className={styles.heartIcon} /> for Xaga
           </p>
         </div>
       </div>
