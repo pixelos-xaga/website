@@ -14,12 +14,8 @@ import styles from './Downloads.module.css';
 
 export const Downloads = () => {
   const [copiedHash, setCopiedHash] = useState<string | null>(null);
-  const primaryImages = DOWNLOADS.recovery_images.filter(
-    (img) => img.name === 'boot.img' || img.name === 'vendor_boot.img'
-  );
-  const secondaryImages = DOWNLOADS.recovery_images.filter(
-    (img) => img.name === 'dtbo.img' || img.name === 'vbmeta.img'
-  );
+  const primaryImages = DOWNLOADS.recovery_images.filter((img) => img.name === 'boot.img');
+  const recoveryImages = DOWNLOADS.recovery_images.filter((img) => img.name === 'vendor_boot.img');
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -35,6 +31,7 @@ export const Downloads = () => {
           <DownloadIcon size={16} />
         </a>
       </div>
+      <span className={styles.imageHashLabel}>SHA256 Hash</span>
       <div className={styles.imageHash}>
         <code className={styles.imageHashText}>{img.sha256}</code>
         <button
@@ -57,7 +54,6 @@ export const Downloads = () => {
         </div>
 
         <div className={styles.grid}>
-          {/* Main ROM Card */}
           <Card variant="primary" className={styles.romCard}>
             <div className={styles.cardHeader}>
               <div className={styles.iconWrapper}>
@@ -70,11 +66,9 @@ export const Downloads = () => {
             </div>
             
             <div className={styles.cardBody}>
-              <div className={styles.metaItem}>
+              <div className={styles.metaInline}>
                 <span className={styles.metaLabel}>Build Date</span>
                 <span className={styles.metaValue}>{DOWNLOADS.rom.date}</span>
-              </div>
-              <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>Filename</span>
                 <code className={styles.filename}>{DOWNLOADS.rom.filename}</code>
               </div>
@@ -83,20 +77,13 @@ export const Downloads = () => {
                 <span className={styles.metaLabel}>SHA256 Hash</span>
                 <div className={styles.hashBox}>
                   <code className={styles.hashText}>{DOWNLOADS.rom.sha256}</code>
-                  <button 
+                  <button
                     onClick={() => copyToClipboard(DOWNLOADS.rom.sha256)}
                     className={styles.copyButton}
                     title="Copy hash"
                   >
                     {copiedHash === DOWNLOADS.rom.sha256 ? <CheckIcon size={16} /> : <CopyIcon size={16} />}
                   </button>
-                </div>
-              </div>
-
-              <div className={styles.embeddedImages}>
-                <h4 className={styles.groupTitle}>Boot Images</h4>
-                <div className={styles.imageList}>
-                  {primaryImages.map(renderImageItem)}
                 </div>
               </div>
             </div>
@@ -109,49 +96,56 @@ export const Downloads = () => {
             </div>
           </Card>
 
-          {/* Recovery Images Card */}
-          <Card className={styles.imagesCard}>
-            <h3 className={styles.groupTitle}>Other Images</h3>
-            <div className={styles.imageList}>
-              {secondaryImages.map(renderImageItem)}
-            </div>
-          </Card>
+          <div className={styles.secondaryGrid}>
+            <Card className={styles.recoveryCard}>
+              <h3 className={styles.groupTitle}>PixelOS Recovery</h3>
+              <div className={styles.imageList}>
+                {recoveryImages.map(renderImageItem)}
+              </div>
+            </Card>
 
-          <Card className={styles.archiveCard}>
-            <h3 className={styles.groupTitle}>Archive</h3>
-            <p className={styles.archiveText}>
-              Browse older PixelOS xaga builds and mirrors on SourceForge.
-            </p>
-            <a
-              href={DOWNLOADS.links.sourceforge}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.archiveButton}
-            >
-              Open Archive
-              <ExternalLinkIcon size={16} />
-            </a>
-          </Card>
+            <Card className={styles.imagesCard}>
+              <h3 className={styles.groupTitle}>Boot Images</h3>
+              <div className={styles.imageList}>
+                {primaryImages.map(renderImageItem)}
+              </div>
+            </Card>
 
-          {/* Essential Tools Card */}
-          <Card className={styles.toolsCard}>
-            <h3 id="preloader-download" className={`${styles.groupTitle} ${styles.anchorTitle}`}>Essential Tools</h3>
-            <div className={styles.toolsList}>
-              {DOWNLOADS.essential.map((tool) => (
-                <div key={tool.name} className={styles.toolItem}>
-                   <div className={styles.toolHeader}>
-                    <WrenchIcon size={20} className={styles.toolIcon} />
-                    <span className={styles.toolName}>{tool.name}</span>
+            <Card className={styles.toolsCard}>
+              <h3 id="preloader-download" className={`${styles.groupTitle} ${styles.anchorTitle}`}>Essential Tools</h3>
+              <div className={styles.toolsList}>
+                {DOWNLOADS.essential.map((tool) => (
+                  <div key={tool.name} className={styles.toolItem}>
+                    <div className={styles.toolHeader}>
+                      <WrenchIcon size={20} className={styles.toolIcon} />
+                      <span className={styles.toolName}>{tool.name}</span>
+                    </div>
+                    <p className={styles.toolDesc}>{tool.description}</p>
+                    <a href={tool.link} className={styles.toolLink}>
+                      Download
+                      <ChevronRightIcon size={14} />
+                    </a>
                   </div>
-                  <p className={styles.toolDesc}>{tool.description}</p>
-                  <a href={tool.link} className={styles.toolLink}>
-                    Download
-                    <ChevronRightIcon size={14} />
-                  </a>
-                </div>
-              ))}
-            </div>
-          </Card>
+                ))}
+              </div>
+            </Card>
+
+            <Card className={styles.archiveCard}>
+              <h3 className={styles.groupTitle}>Archive</h3>
+              <p className={styles.archiveText}>
+                Browse older PixelOS xaga builds and mirrors on SourceForge.
+              </p>
+              <a
+                href={DOWNLOADS.links.sourceforge}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.archiveButton}
+              >
+                Open Archive
+                <ExternalLinkIcon size={16} />
+              </a>
+            </Card>
+          </div>
 
           <Card className={styles.platformCard}>
             <h3 className={styles.groupTitle}>Platform Tools</h3>

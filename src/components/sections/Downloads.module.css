@@ -31,17 +31,36 @@
   gap: var(--spacing-xl);
 }
 
+.secondaryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+}
+
 .grid > * {
+  min-width: 0;
+}
+
+.secondaryGrid > * {
   min-width: 0;
 }
 
 @media (min-width: 992px) {
   .grid {
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr;
   }
-  
+
+  .metaInline {
+    flex-wrap: nowrap;
+    gap: var(--spacing-xl);
+  }
+
   .romCard {
-    grid-row: span 3;
+    grid-column: 1 / -1;
+  }
+
+  .secondaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .platformCard {
@@ -97,10 +116,12 @@
   margin-bottom: var(--spacing-2xl);
 }
 
-.metaItem {
+.metaInline {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--spacing-md);
+  min-width: 0;
 }
 
 .metaLabel {
@@ -113,24 +134,23 @@
 
 .metaValue {
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .filename {
   font-family: var(--font-mono);
   font-size: 0.875rem;
   color: var(--color-text-bright);
-  word-break: break-all;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .hashSection {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-}
-
-.embeddedImages {
-  padding-top: var(--spacing-xl);
-  border-top: 1px solid var(--color-border);
 }
 
 .hashBox {
@@ -222,6 +242,38 @@
   background: var(--color-surface);
 }
 
+.imagesCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.imagesCard .groupTitle {
+  margin-bottom: var(--spacing-lg);
+}
+
+.recoveryCard {
+  display: flex;
+  flex-direction: column;
+  background: rgba(249, 115, 22, 0.06);
+  border-color: rgba(249, 115, 22, 0.22);
+}
+
+.recoveryCard .groupTitle {
+  color: #fb923c;
+  margin-bottom: var(--spacing-lg);
+}
+
+.recoveryCard .miniDownload {
+  color: #fb923c;
+  background: rgba(249, 115, 22, 0.1);
+}
+
+.recoveryCard .miniDownload:hover {
+  color: var(--color-text-bright);
+  background: rgba(249, 115, 22, 0.18);
+  border-color: rgba(249, 115, 22, 0.34);
+}
+
 .groupTitle {
   font-size: 1.125rem;
   font-weight: 700;
@@ -259,6 +311,16 @@
 .imageName {
   font-weight: 600;
   font-size: 0.9375rem;
+}
+
+.imageHashLabel {
+  display: inline-block;
+  margin-bottom: var(--spacing-xs);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-dim);
 }
 
 .miniDownload {

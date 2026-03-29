@@ -17,16 +17,6 @@ export const DOWNLOADS = {
       name: "vendor_boot.img",
       link: "https://pixelos-xaga-worker.angxddeep.workers.dev/vendor_boot.img",
       sha256: "b733f7054160068faece91e6741e1748c742cb1e5a60770c6e678860ab8a2091"
-    },
-    {
-      name: "dtbo.img",
-      link: "https://pixelos-xaga-worker.angxddeep.workers.dev/dtbo.img",
-      sha256: "eaddec1613b9086fb0a5d1326cb51b4a0d98a218df0e2cc1487a2be92c0a777c"
-    },
-    {
-      name: "vbmeta.img",
-      link: "https://pixelos-xaga-worker.angxddeep.workers.dev/vbmeta.img",
-      sha256: "da82450fe9f55fb2e3a1e8340841c78a5e8d5e4d98533f3ea8009eda6a3f0dfb"
     }
   ],
   essential: [

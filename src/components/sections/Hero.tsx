@@ -219,7 +219,6 @@ export const Hero = () => {
               style={{ width: `${((activeScreenshot + 1) / screenshots.length) * 100}%` }}
             />
           </div>
-          <div className={styles.glow} />
         </motion.div>
       </div>
     </section>

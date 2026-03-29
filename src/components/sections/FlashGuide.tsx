@@ -52,14 +52,14 @@ export const FlashGuide = () => {
       )
     },
     {
-      title: "Flash Boot Images",
+      title: "Flash Recovery",
       content: (
         <>
           <p>
-            Ensure you have the correct <code>boot</code>, <code>vendor_boot</code>, and <code>dtbo</code> images from the{' '}
+            Ensure you have the correct <span className={styles.keycap}>vendor_boot</span> recovery image from the{' '}
             <a href={getSectionPath('downloads')} onClick={handleSectionLinkClick('downloads', getSectionPath('downloads'))}>Downloads</a> hub.
           </p>
-          <CodeBlock code={`fastboot flash boot boot.img\nfastboot flash vendor_boot vendor_boot.img\nfastboot flash dtbo dtbo.img`} />
+          <CodeBlock code={`fastboot flash vendor_boot vendor_boot.img`} />
         </>
       )
     },
