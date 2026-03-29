@@ -56,9 +56,10 @@ export const FlashGuide = () => {
       content: (
         <>
           <p>
-            Ensure you have the correct <span className={styles.keycap}>vendor_boot</span> recovery image from the{' '}
+            Ensure you have the correct <span className={styles.keycap}>boot</span> and <span className={styles.keycap}>vendor_boot</span> image from the{' '}
             <a href={getSectionPath('downloads')} onClick={handleSectionLinkClick('downloads', getSectionPath('downloads'))}>Downloads</a> hub.
           </p>
+          <CodeBlock code={`fastboot flash boot boot.img`} />
           <CodeBlock code={`fastboot flash vendor_boot vendor_boot.img`} />
         </>
       )
