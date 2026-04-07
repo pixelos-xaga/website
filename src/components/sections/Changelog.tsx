@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Card } from '../ui/Card';
 import { CalendarDaysIcon } from '../ui/Icons';
 import { CHANGELOG } from '../../data/changelog';
 import styles from './Changelog.module.css';
@@ -51,12 +50,14 @@ export const Changelog = () => {
           <p className={styles.sectionSubtitle}>Pick a build date to review what changed in that release.</p>
         </div>
 
-        <Card className={styles.viewerCard}>
+        <div className={styles.viewer}>
           <div className={styles.viewerHeader}>
             <div className={styles.buildInfo}>
-              <div className={styles.infoLabel}>Selected Build</div>
-              <h3 className={styles.buildTitle}>{formatDate(selectedEntry.date)}</h3>
-              <div className={styles.versionPill}>{selectedEntry.version}</div>
+              <div className={styles.infoLabel}>Release Notes</div>
+              <div className={styles.buildMeta}>
+                <h3 className={styles.buildTitle}>{formatDate(selectedEntry.date)}</h3>
+                <div className={styles.versionPill}>{selectedEntry.version}</div>
+              </div>
             </div>
 
             <label className={styles.selectWrap}>
@@ -80,7 +81,7 @@ export const Changelog = () => {
 
           <div className={styles.sections}>
             {selectedEntry.sections.map((section) => (
-              <div key={section.title} className={styles.sectionCard}>
+              <section key={section.title} className={styles.sectionBlock}>
                 <h4 className={styles.sectionHeading}>{section.title}</h4>
                 <ul className={styles.sectionList}>
                   {section.items.map((item) => (
@@ -89,10 +90,10 @@ export const Changelog = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </section>
             ))}
           </div>
-        </Card>
+        </div>
       </div>
     </section>
   );

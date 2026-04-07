@@ -25,19 +25,19 @@
   font-size: 1.125rem;
 }
 
-.viewerCard {
+.viewer {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-2xl);
+  padding: var(--spacing-2xl) 0 0;
+  border-top: 1px solid var(--color-border);
 }
 
 .viewerHeader {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   gap: var(--spacing-xl);
-  padding-bottom: var(--spacing-xl);
-  border-bottom: 1px solid var(--color-border);
 }
 
 .buildInfo {
@@ -58,6 +58,13 @@
   font-size: clamp(1.75rem, 4vw, 2.4rem);
   font-weight: 800;
   color: var(--color-text-bright);
+}
+
+.buildMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md);
 }
 
 .versionPill {
@@ -107,36 +114,30 @@
 }
 
 .sections {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
 }
 
-.sectionCard {
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  background: rgba(255, 255, 255, 0.02);
-  transition: var(--transition-normal);
-}
-
-.sectionCard:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-
-.sectionHeading {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--color-text-bright);
-  margin-bottom: var(--spacing-md);
-}
-
-.sectionList {
-  list-style: none;
+.sectionBlock {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sectionHeading {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-bright);
+}
+
+.sectionList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 1.25rem;
 }
 
 .sectionItem {
@@ -144,7 +145,6 @@
   line-height: 1.6;
 }
 
-.sectionItem code,
 .sectionItem code {
   font-family: var(--font-mono);
   font-size: 0.875em;
@@ -161,6 +161,10 @@
   .viewerHeader {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .buildMeta {
+    align-items: flex-start;
   }
 
   .selectWrap {
