@@ -2,7 +2,7 @@
 
 - 🎯 The Priority of the Rom is overall stability over peak gaming performance for a smoother daily experience.
 
-## 🗓️ [2026-04-9] - 16.2 Stable
+## 🗓️ [2026-04-09] - 16.2 Stable
 
 ✨ Added
 
