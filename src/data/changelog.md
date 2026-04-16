@@ -4,7 +4,7 @@
 
 ## 🗓️ [2026-04-16] - 16.2 Stable
 
-- 🚨 Clean flash recommened if comming from last rom
+- 🚨 Clean flash recommened if coming from last rom
 - 📷 Restored MIUI Camera due to high demand.
 - 📸 Fixed a crash in MIUI Camera when switching from night mode.
 - 👀 Removed the earlier EIS patch since EIS only works on 1080p/30 or 720p/30 and the patch had no effect in the HAL layer.
