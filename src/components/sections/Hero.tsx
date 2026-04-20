@@ -7,8 +7,8 @@ import { ChevronLeftIcon, ChevronRightIcon } from '../ui/Icons';
 import { getSectionPath, scrollToSection } from '../../utils/sectionNavigation';
 import styles from './Hero.module.css';
 
-const screenshots = Array.from({ length: 13 }, (_, index) => ({
-  src: `/screenshots/screenshot-${index + 1}.png`,
+const screenshots = Array.from({ length: 14 }, (_, index) => ({
+  src: `/screenshots/PixelOS xaga screenshot ${index + 1}.png`,
   alt: `PixelOS xaga screenshot ${index + 1}`,
 }));
 
