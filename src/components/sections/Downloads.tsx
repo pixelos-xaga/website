@@ -14,7 +14,7 @@ import styles from './Downloads.module.css';
 type DownloadAsset = {
   name: string;
   link: string;
-  sha256: string;
+  sha512: string;
 };
 
 type AssetGroup = {
@@ -154,16 +154,16 @@ export const Downloads = () => {
       </div>
 
       <div className={styles.assetHashRow}>
-        <span className={styles.assetHashLabel}>SHA256</span>
+        <span className={styles.assetHashLabel}>SHA512</span>
         <HashCopyButton
-          copied={copiedHash === asset.sha256}
-          label={`Copy ${asset.name} SHA256`}
-          onCopy={() => copyToClipboard(asset.sha256)}
+          copied={copiedHash === asset.sha512}
+          label={`Copy ${asset.name} SHA512`}
+          onCopy={() => copyToClipboard(asset.sha512)}
         />
       </div>
 
-      <code className={styles.assetHashValue} title={asset.sha256}>
-        {asset.sha256}
+      <code className={styles.assetHashValue} title={asset.sha512}>
+        {asset.sha512}
       </code>
     </div>
   );
@@ -214,15 +214,15 @@ export const Downloads = () => {
               </div>
 
               <div className={styles.detailBlock}>
-                <span className={`${styles.detailLabel} ${styles.hashLabelAccent}`}>SHA256</span>
+                <span className={`${styles.detailLabel} ${styles.hashLabelAccent}`}>SHA512</span>
                 <div className={styles.hashInline}>
-                  <code className={styles.hashValue} title={DOWNLOADS.rom.sha256}>
-                    {DOWNLOADS.rom.sha256}
+                  <code className={styles.hashValue} title={DOWNLOADS.rom.sha512}>
+                    {DOWNLOADS.rom.sha512}
                   </code>
                   <HashCopyButton
-                    copied={copiedHash === DOWNLOADS.rom.sha256}
-                    label="Copy ROM SHA256"
-                    onCopy={() => copyToClipboard(DOWNLOADS.rom.sha256)}
+                    copied={copiedHash === DOWNLOADS.rom.sha512}
+                    label="Copy ROM SHA512"
+                    onCopy={() => copyToClipboard(DOWNLOADS.rom.sha512)}
                     size={18}
                   />
                 </div>
@@ -346,16 +346,16 @@ export const Downloads = () => {
                 </div>
 
                 <div className={styles.assetHashRow}>
-                  <span className={styles.assetHashLabel}>SHA256</span>
+                  <span className={styles.assetHashLabel}>SHA512</span>
                   <HashCopyButton
-                    copied={copiedHash === DOWNLOADS.drivers.sha256}
-                    label={`Copy ${DOWNLOADS.drivers.filename} SHA256`}
-                    onCopy={() => copyToClipboard(DOWNLOADS.drivers.sha256)}
+                    copied={copiedHash === DOWNLOADS.drivers.sha512}
+                    label={`Copy ${DOWNLOADS.drivers.filename} SHA512`}
+                    onCopy={() => copyToClipboard(DOWNLOADS.drivers.sha512)}
                   />
                 </div>
 
-                <code className={styles.assetHashValue} title={DOWNLOADS.drivers.sha256}>
-                  {DOWNLOADS.drivers.sha256}
+                <code className={styles.assetHashValue} title={DOWNLOADS.drivers.sha512}>
+                  {DOWNLOADS.drivers.sha512}
                 </code>
               </div>
 
