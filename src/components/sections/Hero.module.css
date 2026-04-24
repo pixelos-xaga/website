@@ -1,8 +1,8 @@
 .hero {
-  padding: 160px 0 80px;
-  min-height: 80vh;
+  padding: clamp(96px, 10vh, 120px) 0 64px;
+  min-height: calc(100svh - 16px);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
   overflow: hidden;
 }
@@ -29,7 +29,7 @@
   padding: 0 var(--spacing-xl);
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-3xl);
+  gap: clamp(var(--spacing-xl), 5vw, var(--spacing-3xl));
   align-items: center;
   position: relative;
   z-index: 1;
@@ -103,14 +103,21 @@
 }
 
 .primaryButton {
-  background: var(--color-primary);
+  background: var(--button-gradient);
+  border: 1px solid var(--button-gradient-border);
   color: white;
+  box-shadow:
+    0 10px 24px var(--button-gradient-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .primaryButton:hover {
   transform: translateY(-2px);
-  filter: brightness(1.1);
-  box-shadow: 0 10px 20px -10px var(--color-primary);
+  background: var(--button-gradient-hover);
+  border-color: var(--button-gradient-hover-border);
+  box-shadow:
+    0 14px 28px var(--button-gradient-hover-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .secondaryButton {
@@ -302,8 +309,13 @@
 }
 
 @media (max-width: 640px) {
+  .hero {
+    padding: 88px 0 48px;
+    min-height: auto;
+  }
+
   .hero::before {
-    inset: 96px -55vw 24px 20%;
+    inset: 72px -55vw 24px 20%;
     filter: blur(24px);
   }
 
