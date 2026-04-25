@@ -7,6 +7,7 @@ import {
   CopyIcon,
   ExternalLinkIcon,
   DownloadIcon,
+  WrenchIcon,
 } from '../ui/Icons';
 import { DOWNLOADS } from '../../data/downloads';
 import styles from './Downloads.module.css';
@@ -182,7 +183,7 @@ export const Downloads = () => {
               <div className={styles.romLead}>
                 <h3 className={styles.romTitle}>
                   <span className={styles.romTitleBase}>PixelOS</span>{' '}
-                  <span className={styles.romTitleAccent}>ROM</span>
+                  <span className={styles.romTitleAccent}>OTA ZIP</span>
                 </h3>
                 <p className={styles.romDescription}>
                   Latest Rom zip for Xaga
@@ -229,6 +230,64 @@ export const Downloads = () => {
               </div>
 
               <a href={DOWNLOADS.rom.link} className={styles.primaryAction}>
+                <DownloadIcon size={18} />
+                Download ZIP
+              </a>
+            </div>
+          </article>
+
+          <article className={styles.romFeature}>
+            <div className={styles.romIntro}>
+              <div className={styles.romLead}>
+                <h3 className={styles.fastbootTitle}>
+                  <span className={styles.romTitleBase}>Fastboot</span>{' '}
+                  <span className={styles.fastbootTitleAccent}>Package</span>
+                </h3>
+                <p className={styles.romDescription}>
+                  Flash directly via fastbootd — no recovery needed
+                </p>
+              </div>
+
+              <div className={styles.romVisual} aria-hidden="true">
+                <div className={clsx(styles.visualChipSecondary, styles.romIconChip)}>
+                  <WrenchIcon size={32} />
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.romStats}>
+              <div className={styles.statItem}>
+                <span className={styles.statLabel}>Version</span>
+                <strong className={styles.statValue}>{DOWNLOADS.fastboot_package.version}</strong>
+              </div>
+              <div className={styles.statItem}>
+                <span className={styles.statLabel}>Release date</span>
+                <strong className={styles.statValue}>{DOWNLOADS.fastboot_package.date}</strong>
+              </div>
+            </div>
+
+            <div className={styles.romFooter}>
+              <div className={styles.detailBlock}>
+                <span className={styles.detailLabel}>Filename</span>
+                <code className={styles.detailValue}>{DOWNLOADS.fastboot_package.filename}</code>
+              </div>
+
+              <div className={styles.detailBlock}>
+                <span className={`${styles.detailLabel} ${styles.hashLabelAccent}`}>SHA512</span>
+                <div className={styles.hashInline}>
+                  <code className={styles.hashValue} title={DOWNLOADS.fastboot_package.sha512}>
+                    {DOWNLOADS.fastboot_package.sha512}
+                  </code>
+                  <HashCopyButton
+                    copied={copiedHash === DOWNLOADS.fastboot_package.sha512}
+                    label="Copy Fastboot Package SHA512"
+                    onCopy={() => copyToClipboard(DOWNLOADS.fastboot_package.sha512)}
+                    size={18}
+                  />
+                </div>
+              </div>
+
+              <a href={DOWNLOADS.fastboot_package.link} className={styles.fastbootAction}>
                 <DownloadIcon size={18} />
                 Download ZIP
               </a>

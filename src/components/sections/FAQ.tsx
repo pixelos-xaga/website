@@ -122,7 +122,7 @@ export const FAQ = () => {
                   For GPay, you may need a custom{' '}
                   <a
                     className={styles.inlineCodeLink}
-                    href="https://github.com/PixelOS-AOSP/official_devices/blob/sixteen/API/updater/CertifiedProps/certified_build_props.json"
+                    href="https://pixelos-xaga-worker.angxddeep.workers.dev/pif.json"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

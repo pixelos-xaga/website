@@ -43,6 +43,14 @@ export const DOWNLOADS = {
       }
     ]
   },
+  fastboot_package: {
+    name: "Fastboot Package",
+    version: "1.0",
+    date: "2026-04-26",
+    filename: "fastboot-package-xaga.zip",
+    link: "#",
+    sha512: "REPLACE_WITH_ACTUAL_SHA512"
+  },
   drivers: {
     filename: "android-bootloader-interface-304243.zip",
     link: "https://pixelos-xaga-worker.angxddeep.workers.dev/android-bootloader-interface-304243.zip",
