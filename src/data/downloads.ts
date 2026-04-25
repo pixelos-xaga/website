@@ -21,8 +21,8 @@ export const DOWNLOADS = {
   ],
   preloader: [
     {
-      name: "preloader_aristotle.bin",
-      link: "https://pixelos-xaga-worker.angxddeep.workers.dev/preloader_aristotle.bin",
+      name: "preloader_xaga.bin",
+      link: "https://pixelos-xaga-worker.angxddeep.workers.dev/preloader_xaga.bin",
       sha512: "8a61d8039de656893119f01e71f97ca26994dc7ba55861837c85af84680d3d96ab8e75957fb91df761ba5e93411d49129e2ab28417fcf3483e5e694670b7190e"
     }
   ],

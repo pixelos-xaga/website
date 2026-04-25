@@ -47,7 +47,7 @@ export const FlashGuide = () => {
           <p className={styles.preloaderHelp}>
             Download the engineering preloader from the <a href={getSectionPath('downloads')} onClick={handleSectionLinkClick('preloader-download', getSectionPath('downloads'))}>Engineering Preloader</a> section in the Downloads hub before continuing.
           </p>
-          <CodeBlock code={`fastboot flash preloader1 preloader_aristotle.bin\nfastboot flash preloader2 preloader_aristotle.bin`} />
+          <CodeBlock code={`fastboot flash preloader1 preloader_xaga.bin\nfastboot flash preloader2 preloader_xaga.bin`} />
         </>
       )
     },
